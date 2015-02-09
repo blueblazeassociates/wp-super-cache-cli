@@ -1,9 +1,27 @@
 {
-	"name": " wp-cli /wp-super-cache-cli",
-	"description": "A CLI interface for the WP Super Cache plugin",
-	"homepage": "https://github.com/wp-cli/wp-super-cache-cli",
-	"license": "GPL2",
-	"autoload": {
-		"files": [ "cli.php" ]
-	}
+  "name" : "blueblazeassociates/wp-super-cache-cli",
+  "description" : "Add a `wp super-cache` command to support the WP Super Cache plug-in",
+  "homepage" : "https://github.com/wp-cli/wp-super-cache-cli",
+  "license" : "MIT",
+  "keywords" : [
+    "wp-cli",
+    "super-cache",
+    "cache"
+  ],
+  "authors" : [{
+      "name" : "WP-CLI Team",
+      "homepage" : "http://github.com/wp-cli",
+      "role" : "Developer"
+    }
+  ],
+  "autoload" : {
+    "files" : [ "cli.php" ]
+  },
+  "require" : {
+    "php" : ">=5.3.0",
+    "wp-cli/wp-cli" : ">=0.17.0"
+  },
+  "replace" : {
+    "wp-cli/wp-super-cache-cli": "*"
+  }
 }
