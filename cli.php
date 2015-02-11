@@ -104,7 +104,7 @@ class WPSuperCache_Command extends WP_CLI_Command {
 		$preload_counter = get_option( 'preload_cache_counter' );
 		$preloading      = is_array( $preload_counter ) && $preload_counter['c'] > 0;
 		$pending_cancel  = get_option( 'preload_cache_stop' );
-			
+
 		// Bail early if caching or preloading is disabled
 		if( ! $super_cache_enabled ) {
 			WP_CLI::error( 'The WP Super Cache is not enabled.' );
@@ -134,7 +134,7 @@ class WPSuperCache_Command extends WP_CLI_Command {
 				WP_CLI::error( 'Not currently preloading.' );
 			}
 		}
-		 
+
 		// Start preloading if not already in progress
 		if ( $preloading ) {
 			WP_CLI::warning( 'Cache preloading is already in progress.' );
@@ -155,7 +155,7 @@ class WPSuperCache_Command extends WP_CLI_Command {
 	protected function preload_status( $preload_counter, $pending_cancel ) {
 		if ( is_array( $preload_counter ) && $preload_counter['c'] > 0 ) {
 			WP_CLI::line( sprintf( 'Currently caching from post %d to %d.', $preload_counter[ 'c' ] - 100, $preload_counter[ 'c' ] ) );
-			
+
 			if ( $pending_cancel ) {
 				WP_CLI::warning( 'Pending preload cancel. It may take up to a minute for it to cancel completely.' );
 			}
@@ -165,5 +165,7 @@ class WPSuperCache_Command extends WP_CLI_Command {
 	}
 }
 
-WP_CLI::add_command( 'super-cache', 'WPSuperCache_Command' );
-
+if ( defined( 'WP_CLI_ROOT' ) ) {
+  //egifford 2015_02_11: Only register this class if WP_CLI_ROOT has been defined. Otherwise, we don't need it!
+  WP_CLI::add_command( 'super-cache', 'WPSuperCache_Command' );
+}
